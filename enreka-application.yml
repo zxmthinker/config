@@ -1,0 +1,15 @@
+server:
+  port: 7070
+management:
+  context-path: /admin
+eureka:
+  client:
+    defaultZone: http://localhost:9999/eureka/
+    registerWithEureka: true
+    fetchRegistry: false
+  instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+    enableSelfPreservation: false
