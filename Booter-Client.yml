@@ -1,0 +1,28 @@
+---
+server:
+  port: 8180
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+
+eureka:
+  environment: dev  #test,prod
+  instance:
+    statusPageUrlPath: ${management.contextPath}/info
+    healthCheckUrlPath: ${management.contextPath}/health
+    hostname: 192.168.199.197
+    instanceId: ${spring.application.name}:${server.port}:${random.value}
+  client:
+   registerWithEureka: true
+   fetchRegistry: true
+   serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+   region: default
+   preferSameZoneEureka: true
+   useDnsForFetchingServiceUrls: false
+   healthCheck: true
+spring:
+    profiles: Single
+
+logging:
+  config: classpath:logback.xml
